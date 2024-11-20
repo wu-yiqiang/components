@@ -1,0 +1,51 @@
+// 垂直、水平居中
+@mixin hor-ver-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+// 水平居中
+@mixin hor-align {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// 隐藏滚动条
+@mixin noScrollBar {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+}
+
+@mixin stretch-ver-align {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+
+@mixin hor-ver-align-grid {
+    display: grid;
+    place-content: center;
+}
+
+@mixin ver-align-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin text-elipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
