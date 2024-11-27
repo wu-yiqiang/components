@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon/index.vue';
-import { isArlang } from '@/hooks/index';
 const emit = defineEmits(['update:visible']);
 const props = defineProps({
     visible: {
