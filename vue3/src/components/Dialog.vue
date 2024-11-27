@@ -11,9 +11,8 @@
     </Teleport>
 </template>
 
-<script setup lang='ts'>
-import ImagePreview from './AuthImage/ImagePreview.vue';
-import SvgIcon from '@/components/SvgIcon/index.vue'
+<script setup lang="ts">
+import SvgIcon from '@/components/SvgIcon/index.vue';
 import { isArlang } from '@/hooks/index';
 const emit = defineEmits(['update:visible']);
 const props = defineProps({
@@ -37,36 +36,50 @@ const open = computed({
     },
 });
 const handleEsc = (e: Event) => {
-    if (e?.keyCode == 27) open.value = false
-}
+    if (e?.keyCode == 27) open.value = false;
+};
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .CustomDialog {
-    background-color: rgba(102, 128, 158, .7);
     position: sticky;
-    transform: translate(0,-100%);
     width: 100%;
     height: 100%;
     cursor: pointer;
     @include hor-ver-align-grid();
     display: flex;
+    animation: scale-up-center-open 0.1s cubic-bezier(0.39, 0.575, 0.565, 1)
+        both;
     .close {
         position: fixed;
         right: 36px;
-        top:20px;
+        top: 20px;
         z-index: 9999999;
         width: 48px;
         aspect-ratio: 1 / 1;
         border-radius: 50%;
-        background-color: rgba(19, 18, 17, .7);
+        background-color: rgba(19, 18, 17, 0.7);
         @include hor-ver-align-grid();
+
         &:hover {
             background-color: rgba(19, 18, 17, 1);
         }
     }
+
     .contents {
-       flex: 1;
+        flex: 1;
         @include hor-ver-align-grid();
+    }
+}
+
+@keyframes scale-up-center-open {
+    0% {
+        transform: translate(0, -100%) scale(0);
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    100% {
+        transform: translate(0, -100%) scale(1);
+        background-color: rgba(102, 128, 158, 0.7);
     }
 }
 </style>
