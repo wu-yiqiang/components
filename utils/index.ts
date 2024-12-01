@@ -1,10 +1,5 @@
 import dayjs from 'dayjs';
 
-export const changeTheme = (theme: string) => {
-    const app = document.querySelector('body');
-    app.dataset.theme = theme;
-    app.className = theme;
-};
 
 // 获取列表数据
 export const getLists = async (

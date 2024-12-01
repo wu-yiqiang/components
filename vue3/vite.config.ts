@@ -17,7 +17,6 @@ export default defineConfig({
     vue(),
     vueJsx(),
     vueDevTools(),
-    vue(),
     AutoImport({
         imports: [
             'vue',

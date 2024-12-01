@@ -1,9 +1,12 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <section class="HomeView">
+   <uploadDemo />
+  </section>
 </template>
+<script lang="ts" setup>
+import uploadDemo from './upload-demo.vue'
+
+</script>
+<style lang="scss" scoped>
+//.HomeView{}
+</style>
