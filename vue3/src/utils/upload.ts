@@ -57,7 +57,7 @@ class Upload {
     this.fileUpload()
   }
   private async fileMerge() {
-    // const { data } = await merge(this.fileHash)
+    await merge({file_name: this.fileName, size: this.fileSize})
   }
   private async fileUpload() {
     while (this.uploadedIndex < this.chunkLists.length) {
@@ -66,10 +66,9 @@ class Upload {
       formData.append('file', chunk.file)
       formData.append('chunk_hash', chunk.chunk_hash)
       formData.append('file_name', chunk.file_name)
-      const { data } = await upload(formData)
-      console.log("sad", data)
+      await upload(formData)
       this.fileProgress()
-      if (this.uploadedIndex + 1 == this.chunkLists.length) this.fileMerge()
+      if (this.uploadedIndex + 1 == this.chunkLists.length) await this.fileMerge()
       this.uploadedIndex++
     }
   }

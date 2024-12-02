@@ -10,8 +10,10 @@ export const upload = (formData: FormData, fn: object | null =  null) => {
   })
 }
 
-export const merge = (data: string) => {
-  return service.post({
-    data: {file_hash:data},
+export const merge = (data: object) => {
+  return service({
+    url : "/file/mergechunks",
+    method: "post",
+    data: data,
   })
 }

@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 const service = axios.create({
-    baseURL: 'http://127.0.0.1:3366',
+    baseURL: 'http://127.0.0.1:3366/',
     timeout: 50000,
-    withCredentials: true, // 允许携带cookie
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
 });
 
-// 添加请求拦截器
+// 请求拦截器
 service.interceptors.request.use(
     (config: Object): any => {
         // if (userStore === null) {
@@ -29,17 +28,19 @@ service.interceptors.request.use(
     },
 ) as any;
 
-// 添加响应拦截器
+// 响应拦截器
 service.interceptors.response.use(
     (response: Object) => {
-        const res = response?.data;
-        if (res?.code && res.code !== 200) {
-            return res?.data || res;
+        const res = response?.data
+        if (res?.code && res.code == 200) {
+
+            return res?.data;
         }
+        console.log('萨达2', res)
         return Promise.reject(res)
     },
     (error: Error) => {
-        // 对响应错误做点什么
+        console.log("sada", error)
         if (error) {
             const code = error?.response;
             if (code) {
@@ -48,10 +49,10 @@ service.interceptors.response.use(
                 if (codeArr.includes(status)) {
                     if (status == 401) return
                 }
-            }        }
+            }
+        }
         return Promise.reject(error);
     },
 );
 
-// 导出 axios 实例
 export default service as any;
