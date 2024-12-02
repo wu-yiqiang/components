@@ -30,7 +30,8 @@ class Upload {
   // 计算文件哈希值
   private FileHash() {
     const spark = new SparkMD5.ArrayBuffer()
-    this.FileHash = spark.append(this.file)
+    spark.append(this.file)
+    this.fileHash = spark.end()
     this.createFileChunk()
   }
   // 分割文件
@@ -56,19 +57,20 @@ class Upload {
     this.fileUpload()
   }
   private async fileMerge() {
-    const { data } = await merge(this.fileHash)
+    // const { data } = await merge(this.fileHash)
   }
   private async fileUpload() {
-    for (this.uploadedIndex; this.uploadedIndex < this.chunkLists.length; this.uploadedIndex++) {
+    while (this.uploadedIndex < this.chunkLists.length) {
       const chunk = this.chunkLists[this.uploadedIndex]
       const formData = new FormData()
       formData.append('file', chunk.file)
       formData.append('chunk_hash', chunk.chunk_hash)
       formData.append('file_name', chunk.file_name)
       const { data } = await upload(formData)
+      console.log("sad", data)
       this.fileProgress()
-      if (data?.message == '已上传')
-        if (this.uploadedIndex + 1 == this.chunkLists.length) this.fileMerge()
+      if (this.uploadedIndex + 1 == this.chunkLists.length) this.fileMerge()
+      this.uploadedIndex++
     }
   }
   private fileProgress() {}

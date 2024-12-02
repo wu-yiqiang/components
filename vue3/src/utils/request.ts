@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-    baseURL: './',
+    baseURL: 'http://127.0.0.1:3366',
     timeout: 50000,
     withCredentials: true, // 允许携带cookie
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -28,8 +28,6 @@ service.interceptors.request.use(
         return Promise.reject(error);
     },
 ) as any;
-
-const responseWhitelist = ['/api/file/upload'];
 
 // 添加响应拦截器
 service.interceptors.response.use(
