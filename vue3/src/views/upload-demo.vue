@@ -2,7 +2,7 @@
   <section class="upload-demo">
    <input
           type="file"
-          accept="video/*"
+          accept="*"
           @change="handleFileChange"
         />
   </section>

@@ -67,12 +67,11 @@ class Upload {
       chunks.push(this.chunkUpload(chunk))
       this.uploadedIndex++
     }
+
     await Promise.all(chunks.map((item)=> {
-        upload(item)
-      } ))
-     await this.fileMerge()
-  }
-  private intercurrentUplaod() {
+      upload(item)
+    }))
+    this.fileMerge()
 
   }
   private chunkUpload (chunk: ChunkType) {
