@@ -68,11 +68,10 @@ class Upload {
       this.uploadedIndex++
     }
 
-    await Promise.all(chunks.map((item)=> {
-      upload(item)
+    await Promise.all(chunks.map(async(item)=> {
+      await upload(item)
     }))
-    this.fileMerge()
-
+    await this.fileMerge()
   }
   private chunkUpload (chunk: ChunkType) {
     const formData = new FormData()
