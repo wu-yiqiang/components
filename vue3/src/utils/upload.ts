@@ -61,17 +61,26 @@ class Upload {
     await merge({file_name: this.fileName, size: this.fileSize})
   }
   private async fileUpload() {
+    let chunks = []
     while (this.uploadedIndex < this.chunkLists.length) {
       const chunk = this.chunkLists[this.uploadedIndex]
-      const formData = new FormData()
-      formData.append('file', chunk.file)
-      formData.append('chunk_hash', chunk.chunk_hash)
-      formData.append('file_name', chunk.file_name)
-      await upload(formData)
-      this.fileProgress()
-      if (this.uploadedIndex + 1 == this.chunkLists.length) await this.fileMerge()
+      chunks.push(this.chunkUpload(chunk))
       this.uploadedIndex++
     }
+    await Promise.all(chunks.map((item)=> {
+        upload(item)
+      } ))
+     await this.fileMerge()
+  }
+  private intercurrentUplaod() {
+
+  }
+  private chunkUpload (chunk: ChunkType) {
+    const formData = new FormData()
+    formData.append('file', chunk.file)
+    formData.append('chunk_hash', chunk.chunk_hash)
+    formData.append('file_name', chunk.file_name)
+    return formData
   }
   private fileProgress() {}
   private setChunkSize () {
