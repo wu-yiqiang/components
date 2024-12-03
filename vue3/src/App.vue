@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-</script>
+
 
 <template>
   <header>
@@ -13,13 +11,25 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/virtualList">virtual list</RouterLink>
+        <Progress :progress="progress" contents="30%"/>
       </nav>
     </div>
   </header>
 
   <RouterView />
 </template>
-
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import Progress from  '@/components/Progress.vue'
+let progress = ref(30)
+//onMounted(() => {
+//  setInterval(() => {
+//    if (progress.value > 100) return
+//    progress.value = progress.value + Math.random()
+//    console.log('sdsd', progress.value )
+//  }, 100)
+//})
+</script>
 <style scoped>
 header {
   line-height: 1.5;

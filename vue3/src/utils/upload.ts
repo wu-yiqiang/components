@@ -19,7 +19,7 @@ class Upload {
   uploadedIndex = 0 // 正在上传文件的序列号
   chunkLists = [] as ChunkType[]
   compress = false
-  chunckSize = 5 * this.unit
+  chunckSize = 0
   progres = 0
   constructor(file: any) {
     this.file = file
@@ -32,6 +32,7 @@ class Upload {
     const spark = new SparkMD5.ArrayBuffer()
     spark.append(this.file)
     this.fileHash = spark.end()
+    this.setChunkSize()
     this.createFileChunk()
   }
   // 分割文件
@@ -73,6 +74,15 @@ class Upload {
     }
   }
   private fileProgress() {}
+  private setChunkSize () {
+    if (this.fileSize <= 100 * this.unit) this.chunckSize = 9 * this.unit
+    if (this.fileSize > 100 * this.unit && this.fileSize <= 300 * this.unit) this.chunckSize = 30 * this.unit
+    if (this.fileSize > 300 * this.unit && this.fileSize <= 500 * this.unit) this.chunckSize = 60 * this.unit
+    if (this.fileSize > 500 * this.unit && this.fileSize <= 1024 * this.unit) this.chunckSize = 80 * this.unit
+    if (this.fileSize > 1024 * this.unit && this.fileSize <=  2 * 1024 * this.unit) this.chunckSize = 120 * this.unit
+    if (this.fileSize > 2 * 1024 * this.unit && this.fileSize <=  5 * 1024 * this.unit) this.chunckSize = 100 * this.unit
+    if (this.fileSize > 5 * 1024 * this.unit && this.fileSize <=  10 * 1024 * this.unit) this.chunckSize = 30 * this.unit
+  }
 }
 
 export default Upload
