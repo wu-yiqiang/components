@@ -61,7 +61,7 @@ class Upload {
     await merge({file_name: this.fileName, size: this.fileSize})
   }
   private async fileUpload() {
-    let chunks = []
+    const chunks = []
     while (this.uploadedIndex < this.chunkLists.length) {
       const chunk = this.chunkLists[this.uploadedIndex]
       chunks.push(this.chunkUpload(chunk))
