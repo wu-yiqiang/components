@@ -15,11 +15,12 @@
       </nav>
     </div>
   </header>
-
+  <Tabs :tabs="['home', 'sadasd','sdsa','user']" />
   <RouterView />
 </template>
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import Tabs from '@/components/Tabs.vue'
 import Progress from  '@/components/Progress.vue'
 let progress = ref(30)
 //onMounted(() => {

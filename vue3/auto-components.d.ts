@@ -26,6 +26,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Step: typeof import('./src/components/Step.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
+    Tabs: typeof import('./src/components/Tabs.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     Toast: typeof import('./src/components/Toast/index.vue')['default']
     VariableVirtualLists: typeof import('./src/components/VariableVirtualLists.vue')['default']
