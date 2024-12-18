@@ -12,6 +12,7 @@ declare module 'vue' {
     Dialog: typeof import('./src/components/Dialog.vue')['default']
     DigitalAnimation: typeof import('./src/components/DigitalAnimation.vue')['default']
     Download: typeof import('./src/components/Download.vue')['default']
+    ElevatorNavigation: typeof import('./src/components/ElevatorNavigation.vue')['default']
     FixedVirtualLists: typeof import('./src/components/FixedVirtualLists.vue')['default']
     FooterOpt: typeof import('./src/components/FooterOpt.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
@@ -30,6 +31,7 @@ declare module 'vue' {
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
     Toast: typeof import('./src/components/Toast/index.vue')['default']
     VariableVirtualLists: typeof import('./src/components/VariableVirtualLists.vue')['default']
+    WaveLoading: typeof import('./src/components/WaveLoading.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }

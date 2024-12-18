@@ -12,6 +12,7 @@
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/virtualList">virtual list</RouterLink>
         <Progress :progress="progress" contents="30%"/>
+        <WaveLoading />
       </nav>
     </div>
   </header>
@@ -22,6 +23,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Tabs from '@/components/Tabs.vue'
 import Progress from  '@/components/Progress.vue'
+import WaveLoading from  '@/components/WaveLoading.vue'
 let progress = ref(30)
 //onMounted(() => {
 //  setInterval(() => {
