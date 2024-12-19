@@ -21,6 +21,7 @@
       width: 160px;
       background-color: blue;
       aspect-ratio: 1 / 1;
+      border-radius: 10px;
       animation: spin 2s linear both;
       animation-direction: alternate;
     }
@@ -30,7 +31,7 @@
         transform: translateY(160px) rotate(0deg);
       }
       100% {
-        transform: translateY(0px) rotate(720deg);
+        transform: translateY(0px) rotate(360deg);
       }
     }
   }
