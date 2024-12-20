@@ -1,151 +1,134 @@
 <template>
-    <section class='ElevatorNavigation'>
+    <section class="ElevatorNavigation" style="timeline-scope: --t1, --t2, --t3, --t4, --t5, --t6">
         <div class="contents">
-            <div class="content">
-                <div class="title">Safety</div>
-                <div class="item">
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
+            <div class="scrolls">
+                <div class="content" style="--s: --t1" id="t1">
+                    <h2>一、Safety</h2>
+                    <section class="content-item">
+                        <div class="contents-box" style="height: 900px;"></div>
+                    </section>
                 </div>
-            </div>
-            <div class="content">
-                <div class="title">Hease</div>
-                <div class="item">
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
+                <div class="content" style="--s: --t2" id="t2">
+                    <h2>二、Hease</h2>
+                    <section>
+                        <div class="contents-box" style="height: 600px;"></div>
+                    </section>
                 </div>
-            </div>
-            <div class="content">
-                <div class="title">BBS</div>
-                <div class="item">
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
+                <div class="content" style="--s: --t3" id="t3">
+                    <h2>三、BBS</h2>
+                    <section>
+                        <div class="contents-box" style="height: 500px;"></div>
+                    </section>
                 </div>
-            </div>
-            <div class="content">
-                <div class="title">Setting</div>
-                <div class="item">
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
+                <div id="t4" class="content" style="--s: --t4">
+                    <h2>四、Setting</h2>
+                    <section>
+                        <div class="contents-box" style="height: 600px;"></div>
+                    </section>
                 </div>
-            </div>
-            <div class="content">
-                <div class="title">Passport</div>
-                <div class="item">
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
+                <div id="t5" class="content" style="--s: --t5">
+                    <h2>五、Passport</h2>
+                    <section>
+                        <div class="contents-box" style="height: 400px;"></div>
+                    </section>
                 </div>
-            </div>
-            <div class="content">
-                <div class="title">Case</div>
-                <div class="item">
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
-                    <div class="content-item"></div>
+                <div id="t6" class="content" style="--s: --t6">
+                    <h2>六、Case</h2>
+                    <section>
+                        <div class="contents-box" style="height: 800px;"></div>
+                    </section>
                 </div>
             </div>
         </div>
         <nav>
-            <a>一、Safety</a>
-            <a>二、Hease</a>
-            <a>三、BBS</a>
-            <a>四、Setting</a>
-            <a>五、Passport</a>
-            <a>六、Case</a>
+            <a href="#t1" style="--s: --t1">一、Safety</a>
+            <a href="#t2" style="--s: --t2">二、Hease</a>
+            <a href="#t3" style="--s: --t3">三、BBS</a>
+            <a href="#t4" style="--s: --t4">四、Setting</a>
+            <a href="#t5" style="--s: --t5">五、Passport</a>
+            <a href="#t6" style="--s: --t6">六、Case</a>
         </nav>
     </section>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
+let formState = ref({
+    note: '',
+});
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .ElevatorNavigation {
+    scroll-behavior: smooth;
     padding: 14px;
     display: flex;
     justify-content: space-between;
-    background-color: aliceblue;
-    overflow: auto;
-
     .contents {
-        display: grid;
-        row-gap: 10px;
-        width: 700px;
-
-        .content {
-            word-wrap: break-word;
-
-            .title {
-                font-size: 20px;
-                font-weight: 700;
-                color: #333;
-            }
-
-            .item {
-                padding: 20px;
+        flex: 1;
+        width: 100%;
+        padding: 14px;
+        overflow: scroll;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        .scrolls {
+            height: 3100px;
+            .content {
                 display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
+                flex-direction: column;
+                view-timeline-name: var(--s);
+                view-timeline-inset: auto;
+                h2 {
+                    margin: 0;
+                    padding: 0.8em 0;
+                    scroll-margin: 20px;
+                }
 
                 .content-item {
-                    width: 80px;
-                    aspect-ratio: 1 / 1;
-                    background-color: purple;
-                    border-radius: 4px;
+                    padding: 14px;
+
+                    .ItforceCard {
+                        flex: 1;
+                    }
                 }
             }
+
         }
     }
 
     nav {
-        display: flex;
-        flex-direction: column;
-        row-gap: 20px;
-        font-size: 14px;
-        height: fit-content;
-        background-color: #fff;
-        padding: 14px;
+        background: #fff;
+        padding: 10px 0;
         border-radius: 4px;
+        height: fit-content;
+        display: grid;
+
+        a {
+            display: block;
+            line-height: 2;
+            padding: 0 15px;
+            font-size: 14px;
+            color: #191919;
+            text-decoration: none;
+            animation: active;
+            animation-timeline: var(--s);
+            border-left: 4px solid transparent;
+
+            &:hover {
+                background-color: #d5d5d54a;
+            }
+        }
+
+        @keyframes active {
+
+            0%,
+            100% {
+                color: #6f00ff;
+                border-color: #6f00ff;
+            }
+        }
     }
 }
 </style>
