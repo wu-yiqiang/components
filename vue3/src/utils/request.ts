@@ -32,15 +32,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response: Object) => {
         const res = response?.data
-        if (res?.code && res.code == 200) {
-
-            return res?.data;
-        }
-        console.log('萨达2', res)
+        if (res?.code && res.code == 200) return res?.data;
         return Promise.reject(res)
     },
     (error: Error) => {
-        console.log("sada", error)
         if (error) {
             const code = error?.response;
             if (code) {

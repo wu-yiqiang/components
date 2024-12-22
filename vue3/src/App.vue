@@ -12,11 +12,11 @@
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/virtualList">virtual list</RouterLink>
         <Progress :progress="progress" contents="30%"/>
-        <WaveLoading />
+        <WaveLoading :percent="progress" />
       </nav>
     </div>
   </header>
-  <Tabs :tabs="['home', 'sadasd','sdsa','user']" />
+  <Tabs :tabs="['网络', '萨达','萨达','萨达']" />
   <RouterView />
 </template>
 <script setup lang="ts">
@@ -25,13 +25,13 @@ import Tabs from '@/components/Tabs.vue'
 import Progress from  '@/components/Progress.vue'
 import WaveLoading from  '@/components/WaveLoading.vue'
 let progress = ref(30)
-//onMounted(() => {
-//  setInterval(() => {
-//    if (progress.value > 100) return
-//    progress.value = progress.value + Math.random()
-//    console.log('sdsd', progress.value )
-//  }, 100)
-//})
+onMounted(() => {
+ setInterval(() => {
+   if (progress.value + 10 > 100) return
+   progress.value = progress.value + 10
+   console.log('sdsd', progress.value )
+ }, 900)
+})
 </script>
 <style scoped>
 header {
