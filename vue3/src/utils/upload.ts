@@ -66,15 +66,10 @@ class Upload {
     const chunks = []
     while (this.uploadedIndex < this.chunkLists.length) {
       const chunk = this.chunkLists[this.uploadedIndex]
-      chunks.push(this.chunkUpload(chunk))
+      chunks.push(upload(this.chunkUpload(chunk)))
       this.uploadedIndex++
     }
-
-    await Promise.all(
-      chunks.map(async (item) => {
-        await upload(item)
-      }),
-    )
+    await Promise.all(chunks)
     await this.fileMerge()
   }
   private chunkUpload(chunk: ChunkType) {
