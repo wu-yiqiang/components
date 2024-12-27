@@ -5,13 +5,14 @@
 import SparkMD5 from 'spark-md5'
 import { merge, upload } from '@/api/file'
 interface ChunkType {
-  file: any
+  file: File
   file_name: string
   chunk_hash: string
 }
 class Upload {
   unit = 1024 * 1024 // 基本单位MB
-  file: any
+  chunkRange = [0, 100, 300, 500, 1024, 2048, 5120, 10240]
+  file: File
   fileHash = ''
   fileName: string
   fileSize: number
@@ -21,10 +22,11 @@ class Upload {
   compress = false
   chunckSize = 0
   progres = 0
-  constructor(file: any) {
+  constructor(file: File) {
     this.file = file
     this.fileName = this.file?.name
     this.fileSize = this.file?.size
+    this.chunkRange = this.chunkRange.map((i) => (i = i * this.unit))
     this.FileHash()
   }
   // 计算文件哈希值
@@ -58,35 +60,53 @@ class Upload {
     this.fileUpload()
   }
   private async fileMerge() {
-    await merge({file_name: this.fileName, size: this.fileSize})
+    await merge({ file_name: this.fileName, size: this.fileSize })
   }
   private async fileUpload() {
     const chunks = []
     while (this.uploadedIndex < this.chunkLists.length) {
       const chunk = this.chunkLists[this.uploadedIndex]
-      chunks.push(upload(this.chunkUpload(chunk)))
+      chunks.push(this.chunkUpload(chunk))
       this.uploadedIndex++
-      
     }
-    await Promise.all(chunks)
+
+    await Promise.all(
+      chunks.map(async (item) => {
+        await upload(item)
+      }),
+    )
     await this.fileMerge()
   }
-  private chunkUpload (chunk: ChunkType) {
+  private chunkUpload(chunk: ChunkType) {
     const formData = new FormData()
     formData.append('file', chunk.file)
     formData.append('chunk_hash', chunk.chunk_hash)
     formData.append('file_name', chunk.file_name)
     return formData
   }
-  private fileProgress() {}
-  private setChunkSize () {
-    if (this.fileSize <= 100 * this.unit) this.chunckSize = 9 * this.unit
-    if (this.fileSize > 100 * this.unit && this.fileSize <= 300 * this.unit) this.chunckSize = 30 * this.unit
-    if (this.fileSize > 300 * this.unit && this.fileSize <= 500 * this.unit) this.chunckSize = 60 * this.unit
-    if (this.fileSize > 500 * this.unit && this.fileSize <= 1024 * this.unit) this.chunckSize = 80 * this.unit
-    if (this.fileSize > 1024 * this.unit && this.fileSize <=  2 * 1024 * this.unit) this.chunckSize = 120 * this.unit
-    if (this.fileSize > 2 * 1024 * this.unit && this.fileSize <=  5 * 1024 * this.unit) this.chunckSize = 100 * this.unit
-    if (this.fileSize > 5 * 1024 * this.unit && this.fileSize <=  10 * 1024 * this.unit) this.chunckSize = 30 * this.unit
+  private isRange(range: object, value: number) {
+    if (!Array.isArray(range)) return false
+    const v1 = range[0]
+    const v2 = range[1]
+    if (value >= v1 && value < v2) return true
+    return false
+  }
+  private setChunkSize() {
+    if (this.isRange(this.chunkRange.splice(0, 2), this.fileSize))
+      return (this.chunckSize = 9 * this.unit)
+    if (this.isRange(this.chunkRange.splice(1, 2), this.fileSize))
+      return (this.chunckSize = 30 * this.unit)
+    if (this.isRange(this.chunkRange.splice(2, 2), this.fileSize))
+      return (this.chunckSize = 60 * this.unit)
+    if (this.isRange(this.chunkRange.splice(3, 2), this.fileSize))
+      return (this.chunckSize = 80 * this.unit)
+    if (this.isRange(this.chunkRange.splice(4, 2), this.fileSize))
+      return (this.chunckSize = 120 * this.unit)
+    if (this.isRange(this.chunkRange.splice(5, 2), this.fileSize))
+      return (this.chunckSize = 100 * this.unit)
+    if (this.isRange(this.chunkRange.splice(6, 2), this.fileSize))
+      return (this.chunckSize = 30 * this.unit)
+    return (this.chunckSize = 200 * this.unit)
   }
 }
 
