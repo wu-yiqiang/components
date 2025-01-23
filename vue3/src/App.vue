@@ -3,6 +3,7 @@
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+          <tabs1 />
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -10,6 +11,7 @@
         <RouterLink to="/virtualList">virtual list</RouterLink>
         <Progress :progress="progress" contents="30%"/>
       </nav>
+
     </div>
   </header>
   <Tabs :tabs="['网络', '萨达','萨达','萨达']" />
@@ -18,6 +20,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import Tabs from '@/components/Tabs.vue'
+import tabs1 from './components/tabs1.vue'
 import Progress from  '@/components/Progress.vue'
 import WaveLoading from  '@/components/WaveLoading.vue'
 let progress = ref(30)
