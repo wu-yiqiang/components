@@ -11,9 +11,14 @@
 </template>
 <script lang="ts" setup>
 import { reactive, watch, computed, ref } from 'vue'
-
+const props = defineProps({
+    tabs: {
+        type: Array,
+    }
+})
 </script>
 <style lang="scss" scoped>
+$--width: 68px;
 .nav93{
     padding: 6px;
     position: relative;
@@ -40,15 +45,15 @@ import { reactive, watch, computed, ref } from 'vue'
     transition: all 0.3s linear;
     cursor: pointer;
     z-index: 2;
-}
-.nav-tab93:hover{
+    &:hover{
     transform: translateY(-1px);
+}
 }
 .nav93 input[name='radio93']:checked + .nav-tab93{
     color: #45873c;
 }
 .slide93{
-    width: 68px;
+    width: $--width;
     height: 32px;
     line-height: 32px;
     border-radius: 16px;
@@ -57,12 +62,12 @@ import { reactive, watch, computed, ref } from 'vue'
     transition: all 0.3s linear;
 }
 #radio93-1:checked ~ .slide93{
-    transform: translateX(0);
+    transform: translateX(0 * $--width);
 }
 #radio93-2:checked ~ .slide93{
-    transform: translateX(68px);
+    transform: translateX(1* $--width);
 }
 #radio93-3:checked ~ .slide93{
-    transform: translateX(136px);
+    transform: translateX(2* $--width);
 }
 </style>
