@@ -12,6 +12,7 @@ declare module 'vue' {
     Dialog: typeof import('./src/components/Dialog.vue')['default']
     DigitalAnimation: typeof import('./src/components/DigitalAnimation.vue')['default']
     Download: typeof import('./src/components/Download.vue')['default']
+    Drag: typeof import('./src/components/Drag.vue')['default']
     ElevatorNavigation: typeof import('./src/components/ElevatorNavigation.vue')['default']
     FixedVirtualLists: typeof import('./src/components/FixedVirtualLists.vue')['default']
     FooterOpt: typeof import('./src/components/FooterOpt.vue')['default']

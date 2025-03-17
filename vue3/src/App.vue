@@ -1,36 +1,26 @@
 
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-          <tabs1 />
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/virtualList">virtual list</RouterLink>
-        <Progress :progress="progress" contents="30%"/>
-      </nav>
-
-    </div>
-  </header>
-  <Tabs :tabs="['网络', '萨达','萨达','萨达']" />
-  <RouterView />
+  <!-- <Progress :progress="progress" contents="30%"/> -->
+  <!-- <Tabs :tabs="['网络', '萨达','萨达','萨达']" /> -->
+  <!-- <RouterView /> -->
+  <Drag />
 </template>
 <script setup lang="ts">
+import Drag from './components/Drag.vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Tabs from '@/components/Tabs.vue'
 import tabs1 from './components/tabs1.vue'
 import Progress from  '@/components/Progress.vue'
 import WaveLoading from  '@/components/WaveLoading.vue'
 let progress = ref(30)
-onMounted(() => {
- setInterval(() => {
-   if (progress.value + 10 > 100) return
-   progress.value = progress.value + 10
-   console.log('sdsd', progress.value )
- }, 900)
-})
+// onMounted(() => {
+//  setInterval(() => {
+//    if (progress.value + 10 > 100) return
+//    progress.value = progress.value + 10
+//    console.log('sdsd', progress.value )
+//  }, 900)
+// })
 </script>
 <style scoped>
 header {
